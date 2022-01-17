@@ -1,0 +1,17 @@
+<h1>My tasks</h1>
+
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <%= form_for(task) do |f| %>
+       <%= f.check_box :completed %>
+      <% end %>
+      <%= link_to task.title, task_path(task) %>
+      <%= link_to delete_task_path(task), method: :delete, data: { confirm: "Delete #{task.title} " } do %>
+        &#128465;
+      <% end %>
+    </li>
+  <% end %>
+  <hr />
+  <%= link_to "+ Add a new task", new_task_path, :class => "add_new_task" %>
+</ul>
